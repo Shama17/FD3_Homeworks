@@ -1,0 +1,40 @@
+﻿.VotesBlock {
+
+    padding: 3px 7px;
+
+}
+
+.VotesBlock .Shop {
+    font-weight: bold;
+  padding: 10px;
+}
+
+.VotesBlock .Goods {
+    padding-top: 5px;
+}
+
+table {
+    border: 1px solid black;
+    text-align: center;
+    border-collapse: collapse;
+
+}
+
+tr {
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
+  padding: 10px 20px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+}

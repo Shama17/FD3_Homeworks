@@ -23,13 +23,15 @@
         return React.DOM.div({className: 'VotesBlock'},
             React.DOM.div({className: 'Shop'}, 'Магазин ' + this.props.shop),
             React.DOM.table({className: 'table'},
-                React.DOM.tr(null,
-                    React.DOM.th(null, 'Название'),
-                    React.DOM.th(null, 'Цена'),
-                    React.DOM.th(null, 'Остаток'),
-                    React.DOM.th(null, 'Изображение'),
-                ),
-                ({className: 'Goods'}, goodsCode)
+                React.DOM.tbody(null,
+                    React.DOM.tr(null,
+                        React.DOM.th(null, 'Название'),
+                        React.DOM.th(null, 'Цена'),
+                        React.DOM.th(null, 'Остаток'),
+                        React.DOM.th(null, 'Изображение'),
+                    ),
+                    ({className: 'Goods'}, goodsCode)
+                )
             ),
         );
     },

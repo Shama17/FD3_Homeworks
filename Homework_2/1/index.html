@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Голосование</title>
+</head>
+<body>
+<div id="container"></div>
+
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<script src="StrBlock.js"></script>
+<link rel="stylesheet" type="text/css" href="StrBlock.css"/>
+
+<script>
+    var arrOfString = ['такимобразом',
+        'начало повседневной',
+        'работыпоформированию',
+        'позициипредставляет',
+        'собойинтересный',
+        'экспериментпроверки',
+        'существенныхфинансовых',
+        'административныхусловий',
+        'следуетоднако',
+        'забыватьчтодальнейшее',
+        'развитиеразличных',
+        'формдеятельности',
+        'позволяетвыполнять',
+        'важныезаданияпо',
+        'разработкесистем',
+        'массовогоучастия'];
+    ReactDOM.render(
+        React.createElement(StrBlock, {strArr: arrOfString}),
+        document.getElementById('container')
+    );
+</script>
+
+</body>
+</html>

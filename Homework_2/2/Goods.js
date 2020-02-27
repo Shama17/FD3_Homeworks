@@ -4,29 +4,43 @@
 
 
     propTypes: {
+        goods: React.PropTypes.arrayOf(React.PropTypes.object),
         shop: React.PropTypes.string.isRequired,
     },
 
     getInitialState: function () {
         return {
+            goodsArr: this.props.goods,
             selectedItem: null,
+            deletedItem: null
         };
     },
+
+
     selectGood: function (eo) {
         this.setState({selectedItem: eo.currentTarget.id});
 
     },
 
-    deleteGood: function () {
-
+    deleteGood: function (eo) {
+        const deletedItem = eo.currentTarget.parentNode.parentNode.id;
+        if (confirm('Вы действительно хотите удалить товар')) {
+            let items = this.state.goodsArr.filter(elem => elem.code !== +deletedItem);
+            this.setState({goodsArr: items, selectedItem: null,});
+        }
     },
 
+
     render: function () {
-        console.log(this.state);
         let goodsCode = [];
-        this.props.goods.forEach(elem => {
+        this.state.goodsArr.forEach(elem => {
             let goodCode =
-                React.DOM.tr({key: elem.code, id: elem.code, classNames: ( 'Goods' +this.state.selectedItem === elem.code ? 'selected': 'null'), onClick: this.selectGood},
+                React.DOM.tr({
+                        key: elem.code,
+                        id: elem.code,
+                        className: ('Goods ' + (+this.state.selectedItem === elem.code ? 'selected' : '')),
+                        onClick: this.selectGood
+                    },
                     React.DOM.td(null, elem.title),
                     React.DOM.td(null, elem.price + ' USD'),
                     React.DOM.td(null, elem.quantity),

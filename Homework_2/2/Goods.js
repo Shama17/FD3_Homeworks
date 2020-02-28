@@ -17,38 +17,33 @@
     },
 
 
-    selectGood: function (eo) {
-        this.setState({selectedItem: eo.currentTarget.id});
-
+    selectItem: function (selectItem) {
+        this.setState({selectedItem: selectItem});
     },
 
-    deleteGood: function (eo) {
-        const deletedItem = eo.currentTarget.parentNode.parentNode.id;
+    deleteItem: function (deleteItem) {
+        this.setState({deleteItem: deleteItem})
         if (confirm('Вы действительно хотите удалить товар')) {
-            let items = this.state.goodsArr.filter(elem => elem.code !== +deletedItem);
-            this.setState({goodsArr: items, selectedItem: null,});
+            let items = this.state.goodsArr.filter(elem => elem.code !== +deleteItem);
+            this.setState({goodsArr: items, selectedItem: null, deleteItem: null});
         }
     },
 
-
     render: function () {
-        let goodsCode = [];
-        this.state.goodsArr.forEach(elem => {
-            let goodCode =
-                React.DOM.tr({
-                        key: elem.code,
-                        id: elem.code,
-                        className: ('Goods ' + (+this.state.selectedItem === elem.code ? 'selected' : '')),
-                        onClick: this.selectGood
-                    },
-                    React.DOM.td(null, elem.title),
-                    React.DOM.td(null, elem.price + ' USD'),
-                    React.DOM.td(null, elem.quantity),
-                    React.DOM.td(null, React.DOM.img({src: elem.imgURL})),
-                    React.DOM.td(null, React.DOM.input({type: 'button', value: 'Удалить', onClick: this.deleteGood}))
-                );
-            goodsCode.push(goodCode)
-        });
+        var goodsCode = this.state.goodsArr.map(item =>
+            React.createElement(Item, {
+                key: item.code,
+                id: item.code,
+                title: item.title,
+                price: item.price,
+                quantity: item.quantity,
+                imgURL: item.imgURL,
+                cbSelectItem: this.selectItem,
+                selectedItem: this.state.selectedItem,
+                cbDeleteItem: this.deleteItem,
+            })
+        );
+
         return React.DOM.div({className: 'Goods'},
             React.createElement(ShopName, {shop: this.props.shop}),
             React.DOM.table({className: 'table'},

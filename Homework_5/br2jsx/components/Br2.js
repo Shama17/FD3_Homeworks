@@ -12,7 +12,7 @@ class Br2 extends React.Component {
         let resArr = [];
         strArr.forEach((elem, i) => {
             resArr.push(elem);
-            resArr.push(<br key={i}/>);
+            if(i<strArr.length-1)resArr.push(<br key={i}/>);
         });
         return (
             <div>

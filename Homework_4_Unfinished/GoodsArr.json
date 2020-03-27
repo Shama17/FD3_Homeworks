@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Samsung",
+    "price": 500,
+    "quantity": 25,
+    "imgURL": "https://content2.onliner.by/catalog/device/main/4385b1fb60327eabd0a9c3ca4b9628fa.jpeg",
+    "code": 1
+  },
+  {
+    "title": "Huawei",
+    "price": 400,
+    "quantity": 28,
+    "imgURL": "https://content2.onliner.by/catalog/device/main/d882b98a1b406734271f81fc9508934e.jpeg",
+    "code": 2
+  },
+  {
+    "title": "Apple",
+    "price": 600,
+    "quantity": 30,
+    "imgURL": "https://content2.onliner.by/catalog/device/main/3270c142a950a37f1242f0d419a318f4.jpeg",
+    "code": 3
+  },
+  {
+    "title": "Xiaomi",
+    "price": 300,
+    "quantity": 48,
+    "imgURL": "https://content2.onliner.by/catalog/device/main/55401558c5c95e7fd3d2512833f4f53d.jpeg",
+    "code": 4
+  },
+  {
+    "title": "Nokia",
+    "price": 350,
+    "quantity": 15,
+    "imgURL": "https://content2.onliner.by/catalog/device/main/0dc406736a89618320ed8ab923aae00c.jpeg",
+    "code": 5
+  }
+]

@@ -27,7 +27,7 @@ var Item = React.createClass({
     render: function () {
         return React.DOM.tr({
                 id: this.props.id,
-                className: ('Goods ' + (+this.props.selectedItem === this.props.id ? 'selected' : '')),
+                className: ('Br2 ' + (+this.props.selectedItem === this.props.id ? 'selected' : '')),
                 onClick: this.selectItem
 
             },

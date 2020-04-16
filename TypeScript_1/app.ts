@@ -32,11 +32,11 @@ class Scales {
     constructor() {
     }
 
-    addProduct(_product: Products) {
+    addProduct(_product: Products): void {
         this.products.push(_product);
     }
 
-    getNameList() {
+    getNameList(): string[] {
         let productArr: string[] = [];
         this.products.forEach(product => {
             productArr.push(product.getName())
@@ -44,7 +44,7 @@ class Scales {
         return productArr
     };
 
-    getSumScale() {
+    getSumScale(): number {
         let totalWeight: number = 0;
         this.products.forEach(product => {
             totalWeight += product.getScale()

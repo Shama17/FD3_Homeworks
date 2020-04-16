@@ -47,10 +47,12 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     return ScalesStorageEngineLocalStorage;
 }());
 var Scales = /** @class */ (function () {
-    function Scales() {
-    }
-    Scales.prototype.addProduct = function (_storageEngine) {
+    function Scales(_storageEngine) {
+        this.storageEngine = null;
         this.storageEngine = _storageEngine;
+    }
+    Scales.prototype.addProduct = function (item) {
+        return this.storageEngine.addItem(item);
     };
     Scales.prototype.getNameList = function () {
         var productArr = [];
@@ -83,14 +85,12 @@ console.log(pineApple.getName());
 console.log(pineApple.getScale());
 var scalesStorageEngineArray = new ScalesStorageEngineArray;
 var scalesStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage;
-scalesStorageEngineArray.addItem(apple);
-scalesStorageEngineArray.addItem(pinkApple);
-scalesStorageEngineLocalStorage.addItem(tomato);
-scalesStorageEngineLocalStorage.addItem(pineApple);
-var scaleArray = new Scales();
-var scaleLocalStorage = new Scales();
-scaleArray.addProduct(scalesStorageEngineArray);
-scaleLocalStorage.addProduct(scalesStorageEngineLocalStorage);
+var scaleArray = new Scales(scalesStorageEngineArray);
+var scaleLocalStorage = new Scales(scalesStorageEngineLocalStorage);
+scaleArray.addProduct(apple);
+scaleArray.addProduct(pinkApple);
+scaleLocalStorage.addProduct(tomato);
+scaleLocalStorage.addProduct(pineApple);
 console.log("Вес продуктов в массиве " + scaleArray.getSumScale());
 console.log("Array: " + scaleArray.getNameList());
 console.log("Вес продуктов в Local Storage " + scaleLocalStorage.getSumScale());

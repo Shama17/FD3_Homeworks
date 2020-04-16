@@ -17,7 +17,7 @@ class Scales {
 
     getNameList(): string[] {
         let productArr: string[] = [];
-        this.products.forEach(product => {
+        this.products.forEach((product : IScalable) => {
             productArr.push(product.getName())
         });
         return productArr

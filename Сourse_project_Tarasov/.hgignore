@@ -1,0 +1,10 @@
+syntax: glob
+logs/
+.idea/
+target/*
+*/target/
+*.iml
+*/*.iml
+node_modules/*
+dist/*
+WebShell_Repository.rar

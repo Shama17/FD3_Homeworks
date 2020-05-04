@@ -1,0 +1,96 @@
+<div class="screen">
+  <div class="main">
+    <div class="flex">
+      <div *ngIf="pageFlag === 'unpPage'">
+        <div class="top">
+          <div class="messageHeader">Введите ваш УНП</div>
+        </div>
+        <div class="authorizationIn">
+          <form [formGroup]="registrationUNP">
+            <input class="inbox" formControlName="unp" type="text" [maxlength]="9" [(ngModel)]="inputText">
+            <div class="error"
+                 *ngIf="registrationUNP.controls['unp'].invalid && registrationUNP.controls['unp'].touched">Введите
+              корректный УНП
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="pageFlag == 'accountPage'">
+        <div class="top">
+          <div class="messageHeader">Введите ваш Р/С</div>
+        </div>
+        <div class="authorizationIn">
+          <form [formGroup]="account">
+            <input class="inbox" formControlName="bankAccount" type="text" [(ngModel)]="inputText">
+            <div class="error"
+                 *ngIf="account.controls['bankAccount'].invalid && account.controls['bankAccount'].touched">Введите
+              корректный номер счета
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="pageFlag == 'passwordPage'">
+        <div class="top">
+          <div class="messageHeader">Введите новый пароль</div>
+        </div>
+        <div class="authorizationIn">
+          <form [formGroup]="password">
+            <input class="inbox" formControlName="password" type="password" [(ngModel)]="inputText">
+            <div class="error"
+                 *ngIf="password.controls['password'].invalid && password.controls['password'].touched">Введите
+              пароль
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="pageFlag == 'confirmPasswordPage'">
+        <div class="top">
+          <div class="messageHeader">Введите новый пароль повторно</div>
+        </div>
+        <div class="authorizationIn">
+          <form [formGroup]="confirmPassword">
+            <input class="inbox" formControlName="confirmPassword" type="password" [(ngModel)]="inputText">
+            <div class="error"
+                 *ngIf="confirmPassword.controls['confirmPassword'].invalid && confirmPassword.controls['confirmPassword'].touched">
+              Введенные пароли не совпадают
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="numPad" *ngIf="pageFlag !== 'summaryPage'">
+        <app-num-pad (onNumPressedClick)="numPressed($event)"
+                     (onConfirmClick)="confirm()"
+                     (onDeleteClick)="delete()"
+                     (onClearClick)="clear()">
+
+        </app-num-pad>
+      </div>
+      <div class="buttonLeft" *ngIf="pageFlag !== 'summaryPage'">
+        <button (click)="back()">НАЗАД</button>
+
+      </div>
+
+      <div class="summaryPage" *ngIf="pageFlag === 'summaryPage'">
+        <p>Регистрация зевершена успешно</p>
+        <p>Ваш учетный номер {{lastReg}}</p>
+        <p>Ваш УНП {{unp}}</p>
+        <p>Если требуется распечатать регистрационные данные, нажмите кнопку "Печатать чек"</p>
+        <br>
+        <br>
+        <br>
+        <div class="buttonLeft">
+          <button (click)="printReceipt()">Печатать чек</button>
+        </div>
+        <div class="buttonRight">
+          <button (click)="authorization()">Продолжить</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <app-spinner *ngIf="spinner === true"></app-spinner>
+  <app-pop-up *ngIf="!!errorMessage" [error]=errorMessage></app-pop-up>
+</div>
+<app-time-out class="timeOutWindow" *ngIf="timeOutFlag" (onBackClick)="resetTimeOut()"></app-time-out>

@@ -1,0 +1,41 @@
+<div class="screen">
+  <div class="main">
+    <div class="flex ">
+      <div class="messageHeader">{{User.organizationName}}</div>
+
+      <div class="center" *ngIf="pageFlag ==='menu' ">
+        <div *ngFor="let button of menuButtonsArray; let i = index" class="{{button.class}}">
+          <button (click)="button.click()">{{button.buttonName}}</button>
+        </div>
+      </div>
+
+      <div class="center" *ngIf="pageFlag ==='service' ">
+        <div *ngFor="let button of serviceButtonArray; let i = index" class="{{button.class}}">
+          <button (click)="button.click()" [disabled]="button.disabled">{{button.button}}</button>
+        </div>
+      </div>
+
+      <div *ngIf="pageFlag ==='deviceStatus' " class="center">
+        <p class="deviceStatus" *ngFor="let item of componentStatus; let i = index"><span
+          class="componentDescription">{{item.description}}</span> : {{item.status}}</p>
+
+      </div>
+
+      <div class="homeButton">
+        <div class="buttonLeft">
+          <button (click)="back()">ВЫХОД</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-spinner *ngIf="spinner === true"></app-spinner>
+  <app-pop-up *ngIf="!!errorMessage" [error]=errorMessage [buttonNameRight]="popUpButtonRight"
+              [buttonNameLeft]="popUpButtonLeft"
+              (onActionRightClick)="popUpNext()"
+              (onActionLeftClick)="popUpCancel()"></app-pop-up>
+</div>
+
+<app-time-out class="timeOutWindow" *ngIf="timeOutFlag" (onBackClick)="resetTimeOut()"></app-time-out>
+
+

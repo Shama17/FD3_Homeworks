@@ -1,0 +1,210 @@
+{
+  "post": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "get": [
+    {
+      "id": 1,
+      "CDM": false,
+      "BDM": true,
+      "PRR": false,
+      "IBM": false
+    },
+    {
+      "id": 2,
+      "status": true,
+      "message": "Команда обработана"
+    },
+    {
+      "id": 3,
+      "code": 401,
+      "message": "Команда обработана"
+    },
+    {
+      "id" : 4,
+      "timeOut": 30000,
+      "serverErrorMessage": "Ошибка связи с сервером. Повторите операцию позже"
+    },
+    {
+      "id": 5,
+      "name": "BDM",
+      "status": true,
+      "errorDescription": "",
+      "components": [
+        {
+          "name": "global",
+          "description": "Общий статус",
+          "status": true,
+          "statusDescription": "Устройство на связи"
+        },
+        {
+          "name": "door",
+          "description": "Дверь сейфа",
+          "status": true,
+          "statusDescription": "Дверь сейфа закрыта"
+        },
+        {
+          "name": "sensorCleaning",
+          "description": "Сенсор",
+          "status": true,
+          "statusDescription": "Чистка сенсоров не требуется"
+        },
+        {
+          "name": "bag",
+          "description": "Мешок",
+          "status": true,
+          "statusDescription": "Мешок в порядке"
+        },
+        {
+          "name": "cover",
+          "description": "Крышка депозитного модуля",
+          "status": true,
+          "statusDescription": "Крышка закрыта"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "message": "Server timeout",
+      "code": "300"
+    },
+    {
+      "id": 9,
+      "login": "200339518-2",
+      "password": "30120106421000000",
+      "account": "BY96PJCB30120106421000000933",
+      "first_name": "fefff",
+      "last_name": "first-name",
+      "middle_name": "middle_name",
+      "post": "psot",
+      "phone": "85855522",
+      "email": "email",
+      "department_id": 1,
+      "role_id": 2,
+      "organizationName": "ООО БТС",
+      "organizationUnp": 200339518,
+      "roles": [
+        "ENGINEER"
+      ]
+    }
+  ],
+  "CASH-UNIT-DTO": [
+    {
+      "denomination": 5,
+      "quantity": 100,
+      "currency": "BYN",
+      "totalAmount": 500
+    },
+    {
+      "denomination": 10,
+      "quantity": 100,
+      "currency": "BYN",
+      "totalAmount": 1000
+    },
+    {
+      "denomination": 20,
+      "quantity": 100,
+      "currency": "BYN",
+      "totalAmount": 2000
+    },
+    {
+      "denomination": 50,
+      "quantity": 100,
+      "currency": "BYN",
+      "totalAmount": 5000
+    },
+    {
+      "denomination": 100,
+      "quantity": 100,
+      "currency": "BYN",
+      "totalAmount": 10000
+    },
+    {
+      "denomination": 200,
+      "quantity": 100,
+      "currency": "BYN",
+      "totalAmount": 20000
+    }
+  ],
+  "CDM":
+    {
+      "id": 1,
+      "opened": false
+    }
+  ,
+  "BDM":
+    {
+      "id": 1,
+      "opened": false
+    }
+  ,
+  "BUTTONS": [
+    {
+      "id": 1,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки1",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 2,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки2",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 3,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки3",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 4,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки4",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 5,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки5",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 6,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки6",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 7,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки7",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 8,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки8",
+      "is_blocked": false,
+      "customer_type_id": 1
+    },
+    {
+      "id": 9,
+      "destination_code": 2004,
+      "serviceName": "Прием выручки9",
+      "is_blocked": false,
+      "customer_type_id": 1
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<div class="PopUpWindow">
+  <p class="PopUpWindowText">{{error}}</p>
+  <button class="popUpButtonLeft" *ngIf = "!!buttonNameLeft" (click)="actionLeft()">{{buttonNameLeft}}</button>
+  <button class="popUpButtonLeft" *ngIf = "!buttonNameLeft && error !== 'Тестовый прием'"  (click)="exit()">Выход</button>
+  <button class="popUpButtonRight" *ngIf = "!!buttonNameRight" (click)="actionRight()">{{buttonNameRight}}</button>
+</div>
+
+<div class="hideAll"></div>

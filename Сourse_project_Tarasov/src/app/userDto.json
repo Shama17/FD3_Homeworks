@@ -1,0 +1,17 @@
+{
+"id": 1,
+"login": "1111",
+"createTime": "",
+"modificationTime": "",
+"accountLocked": false,
+"firstName": "Adnrey",
+"lastName": "Romanovich",
+"middleName": "Genrihovich",
+"post": "programmer",
+"email": "test@bytechs.by",
+"phone": "4567",
+"roles": ["ROLE_USER", "ROLE_OTHER"]
+}
+
+
+

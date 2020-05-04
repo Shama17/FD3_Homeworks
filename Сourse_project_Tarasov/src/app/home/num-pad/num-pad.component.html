@@ -1,0 +1,38 @@
+<div class=" numPad">
+  <br>
+  <table class="numpadtable">
+    <tr>
+      <td><input type="Button" name="key" value="1" (click)="numPressed('1')"></td>
+      <td><input type="Button" name="key" value="2" (click)="numPressed('2')"></td>
+      <td><input type="Button" name="key" value="3" (click)="numPressed('3')"></td>
+      <td>
+        <div class="numpadfuncbutton"><input type="Button" name="CLEAR" value="СБРОС" (click)="clear()"></div>
+      <td>
+    </tr>
+    <tr>
+      <td><input type="Button" name="key" value="4" (click)="numPressed('4')"></td>
+      <td><input type="Button" name="key" value="5" (click)="numPressed('5')"></td>
+      <td><input type="Button" name="key" value="6" (click)="numPressed('6')"></td>
+      <td>
+        <div class="numpadfuncbutton"><input type="Button" name="DEL" value="УДАЛИТЬ" (click)="delete()"></div>
+      </td>
+    </tr>
+    <tr>
+      <td><input type="Button" name="key" value="7" (click)="numPressed('7')"></td>
+      <td><input type="Button" name="key" value="8" (click)="numPressed('8')"></td>
+      <td><input type="Button" name="key" value="9" (click)="numPressed('9')"></td>
+      <td>
+        <div class="numpadfuncbutton">
+          <input type="button" name="OK" value="ОК" (click)="confirm()">
+        </div>
+      </td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="Button" name="key" value="0" (click)="numPressed('0')"></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>

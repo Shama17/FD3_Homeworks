@@ -1,0 +1,115 @@
+<div class="screen">
+  <div class="main">
+    <div class="flex ">
+      <div class="messageHeader" *ngIf="pageFlag ==='menu'">{{User.organizationName}}</div>
+      <div class="messageHeader" *ngIf="pageFlag === 'collection'">Инкассация</div>
+
+      <div *ngIf="pageFlag == 'changePassword'">
+        <div class="messageHeader" *ngIf="changePasswordStage ==='setOldPassword'">Введите старый пароль</div>
+        <div class="messageHeader" *ngIf="changePasswordStage ==='setNewPassword'">Введите новый пароль</div>
+        <div class="messageHeader" *ngIf="changePasswordStage ==='confirmNewPassword'">Введите новый пароль повторно
+        </div>
+        <form [formGroup]="changeUserPassword">
+          <input class="inbox" formControlName="password" type="password" [ngModel]="inputText">
+          <br>
+          <div class="error"
+               *ngIf="changeUserPassword.controls['password'].invalid && changeUserPassword.controls['password'].touched && (changePasswordStage ==='setOldPassword' || changePasswordStage ==='setNewPassword')">
+            Поле не должно быть пустым
+          </div>
+          <div class="error"
+               *ngIf="changeUserPassword.controls['password'].invalid && changeUserPassword.controls['password'].touched && changePasswordStage === 'confirmNewPassword'">
+            Введенные пароли не совпадают
+          </div>
+        </form>
+      </div>
+
+      <div class="center" *ngIf="pageFlag ==='menu' ">
+        <div *ngFor="let button of menuButtonsArray; let i = index" class="{{button.class}}">
+          <button (click)="button.click()">{{button.buttonName}}</button>
+        </div>
+      </div>
+
+      <div class="numPad" *ngIf="pageFlag ==='changePassword'">
+        <app-num-pad (onNumPressedClick)="numPressed($event)"
+                     (onConfirmClick)="confirm()"
+                     (onDeleteClick)="delete()"
+                     (onClearClick)="clear()">
+
+        </app-num-pad>
+      </div>
+
+      <div class="center" *ngIf="pageFlag==='collection' && (collectionState === 'statisticCDM' || collectionState === 'statisticBDM') ">
+        <table width="100%" cellpadding="0" cellspacing="0" class="manTotalTable">
+          <tr>
+            <td align="left" width="20%"></td>
+            <td align="right" width="20%">
+          </tr>
+        </table>
+        <table id="cashTable" class="cashTable" align=center>
+          <tr>
+            <td>НОМИНАЛ</td>
+            <td>К-СТВО</td>
+            <td>СУММА</td>
+            <td>ВАЛЮТА</td>
+          </tr>
+          <tr *ngFor="let unit of cashUnits let i= index">
+            <td>{{unit.denomination | number:'0.0-2'}}</td>
+            <td>{{unit.quantity | number:'0.0-2'}}</td>
+            <td>{{unit.totalAmount | number:'0.0-2'}}</td>
+            <td>{{unit.currency}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><b>ИТОГО</b></td>
+            <td><b>{{totalSum | number:'0.0-2'}}</b></td>
+            <td><b>BYN</b></td>
+          </tr>
+        </table>
+
+      </div>
+      <div class="center" *ngIf="pageFlag==='collection' && collectionState === 'CDMSafeOpened'">
+        <p class="infoText">Дверь монетного сейфа открыта, замените сумку и закройте сейф</p>
+        <p class="infoText">После закрытия сейфа, нажмите кнопку "ПРОДОЛЖИТЬ"</p>
+      </div>
+      <div  class="center" *ngIf="pageFlag==='collection' && collectionState === 'receiptPrinted'" >
+        <p class="infoText">Печать чека.</p>
+        <p class="infoText">Поместите распечатанный чек в купюроприемник, затем нажмите кнопку "ПРОДОЛЖИТЬ"</p>
+        <p class="infoText">В случае, если чек не распечатался, нажмите кнопку "Продолжить без чека"</p>
+      </div>
+      <div  *ngIf="pageFlag==='collection' && collectionState === 'BDMSafeOpened'" class="center">
+        <p class="infoText">Дверь банкнотного сейфа открыта, замените сумку и закройте сейф</p>
+        <p class="infoText">После закрытия сейфа, нажмите кнопку "ПРОДОЛЖИТЬ"</p>
+      </div>
+      <div  *ngIf="pageFlag==='collection' && collectionState === 'openOC'" class="center">
+        <p class="infoText">Инкассация проведена успешно.</p>
+        <p class="infoText">Для открытия ОЦ нажмите кнопку "ОТКРЫТЬ ОПЕР. ЦИКЛ"</p>
+      </div>
+
+
+      <div class="homeButton">
+        <div class="buttonLeft">
+          <button *ngIf="collectionState !== 'receiptPrinted' && collectionState !== 'openBDM'  && collectionState !== 'CDMSafeOpened'" (click)="back()">ВЫХОД</button>
+          <button *ngIf="pageFlag==='collection' && collectionState === 'receiptPrinted'  "  (click)="ReceiptResult(false)">ПРОДОЛЖИТЬ БЕЗ ЧЕКА</button>
+          <button *ngIf="pageFlag==='collection' && collectionState === 'OpenOC'" (click)="back()">ВЫХОД</button>
+        </div>
+        <div class="buttonRight">
+          <button *ngIf="pageFlag==='collection' && collectionState === 'statisticCDM'"  (click)="open('CDM')">ОТКРЫТЬ МОНЕТНЫЙ СЕЙФ</button>
+          <button *ngIf="pageFlag==='collection'&& collectionState === 'statisticBDM'"  (click)="printCollectionReceipt()">ПЕЧАТЬ ЧЕКА </button>
+          <button *ngIf="pageFlag==='collection'&& collectionState === 'openBDM'" (click)="open('BDM')">ОТКРЫТЬ БАНКНОТНЫЙ СЕЙФ </button>
+          <button *ngIf="pageFlag==='collection' && collectionState === 'CDMSafeOpened'"  (click)="printCollectionReceipt()">ПРОДОЛЖИТЬ</button>
+          <button *ngIf="pageFlag==='collection' && collectionState === 'receiptPrinted'" (click)="ReceiptResult(true)">ПРОДОЛЖИТЬ</button>
+          <button *ngIf="pageFlag==='collection' && collectionState === 'BDMSafeOpened'"  (click)="finishCollection()">ПРОДОЛЖИТЬ</button>
+          <button *ngIf="pageFlag==='collection' && collectionState === 'openOC'" (click)="OpenOC()">ОТКРЫТЬ ОПЕР. ЦИКЛ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <app-spinner *ngIf="spinner === true"></app-spinner>
+  <app-pop-up *ngIf="!!errorMessage" [error]=errorMessage [buttonNameRight]="popUpButtonRight"
+              (onActionRightClick)="popUpContinue()"></app-pop-up>
+</div>
+
+<app-time-out class="timeOutWindow" *ngIf="timeOutFlag" (onBackClick)="resetTimeOut()"></app-time-out>
+

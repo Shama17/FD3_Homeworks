@@ -96,22 +96,10 @@ class Scales<StorageEngine extends IStorageEngine> {
     }
 }
 
-
 let apple = new Products("Яблоко белый налив", 2);
-console.log(apple.getName());
-console.log(apple.getScale());
-
 let pinkApple = new Products("Яблоко розовый налив", 1);
-console.log(pinkApple.getName());
-console.log(pinkApple.getScale());
-
 let tomato = new Products("Помидор красный", 3);
-console.log(tomato.getName());
-console.log(tomato.getScale());
-
 let pineApple = new Products("Ананас", 5);
-console.log(pineApple.getName());
-console.log(pineApple.getScale());
 
 let scalesStorageEngineArray = new ScalesStorageEngineArray;
 let scalesStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage;

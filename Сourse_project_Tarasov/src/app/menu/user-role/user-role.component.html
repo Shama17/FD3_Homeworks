@@ -1,0 +1,81 @@
+<div class="screen">
+  <div class="main">
+    <div class="flex ">
+      <div class="messageHeader" *ngIf="pageFlag ==='menu' || pageFlag ==='userServices'">{{User.organizationName}}
+      </div>
+      <div class="messageHeader" *ngIf="pageFlag === 'deposit'">{{'Р/С ' + User.login}}
+      </div>
+
+      <div *ngIf="pageFlag == 'changePassword'">
+        <div class="messageHeader" *ngIf="changePasswordStage ==='setOldPassword'">Введите старый пароль</div>
+        <div class="messageHeader" *ngIf="changePasswordStage ==='setNewPassword'">Введите новый пароль</div>
+        <div class="messageHeader" *ngIf="changePasswordStage ==='confirmNewPassword'">Введите новый пароль повторно
+        </div>
+        <form [formGroup]="changeUserPassword">
+          <input class="inbox" formControlName="password" type="password" [(ngModel)]="inputText">
+          <br>
+          <div class="error"
+               *ngIf="changeUserPassword.controls['password'].invalid && changeUserPassword.controls['password'].touched && (changePasswordStage ==='setOldPassword' || changePasswordStage ==='setNewPassword')">
+            Поле не должно быть пустым
+          </div>
+          <div class="error"
+               *ngIf="changeUserPassword.controls['password'].invalid && changeUserPassword.controls['password'].touched && changePasswordStage === 'confirmNewPassword'">
+            Введенные пароли не совпадают
+          </div>
+        </form>
+      </div>
+
+
+      <div class="center" *ngIf="pageFlag ==='menu' ">
+        <div *ngFor="let button of menuButtonsArray; let i = index" class="{{button.class}}">
+          <button (click)="button.click()">{{button.buttonName}}</button>
+        </div>
+      </div>
+      <div class="center" *ngIf="pageFlag ==='userServices' ">
+        <div *ngFor="let button of userServicesButtonsArray[currentIndexOfUserServicesArray]; let i = index"
+             class="{{button.class}}">
+          <button (click)="deposit(button.serviceId)">{{button.buttonName}}</button>
+        </div>
+      </div>
+      <div class="center receipt" *ngIf="pageFlag ==='receipt'">
+        <div>ПОЖАЛУЙСТА, ВОЗЬМИТЕ ВАШ ЧЕК!</div>
+      </div>
+
+      <app-cash-unit *ngIf="pageFlag === 'deposit'"></app-cash-unit>
+
+      <app-num-pad *ngIf="pageFlag ==='changePassword'" (onNumPressedClick)="numPressed($event)"
+                   (onConfirmClick)="confirm()"
+                   (onDeleteClick)="delete()"
+                   (onClearClick)="clear()">
+      </app-num-pad>
+
+
+      <div class="homeButton">
+        <div class="buttonLeft">
+          <button [disabled]="cashInserted$===true" (click)="back()">ВЫХОД</button>
+        </div>
+        <div class="buttonRight" *ngIf="pageFlag === 'deposit'">
+          <button [disabled]="cashInserted$===false" (click)="enroll()">Зачислить</button>
+        </div>
+        <div class="buttonRight" *ngIf="pageFlag ==='userServices' && userServicesButtonsArray.length > 1">
+          <button (click)="showNextButtons()">Далее</button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+  <app-spinner *ngIf="spinner === true || !!depositModuleBusy$"></app-spinner>
+  <app-pop-up *ngIf="!!errorMessage" [error]=errorMessage [buttonNameRight]="popUpButtonRight"
+              (onActionRightClick)="popUpContinue()"></app-pop-up>
+
+</div>
+<app-time-out class="timeOutWindow" *ngIf="timeOutFlag" (onBackClick)="resetTimeOut()" [depositFlag]="pageFlag"></app-time-out>
+
+
+
+
+
+
